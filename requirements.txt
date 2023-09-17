@@ -1,0 +1,10 @@
+python-dotenv
+python-telegram # todo add this to our code 
+sqlalchemy==1.4.49
+schedule
+mysql-connector-python
+pytgbot==4.9.1
+Flask
+apscheduler
+pandas==1.5.3
+convertdate==2.4.0
