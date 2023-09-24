@@ -8,6 +8,13 @@ def start(context, telegram_api, logger_api):
     global job_lock
     with job_lock:
         channels = context.get_all_channel()
+        channels = [
+            DotDict({
+                "is_public": 1,
+                "username": "dahom_ch",
+                "chat_id": None
+            })
+        ]
         for channel in tqdm(channels):
             try:
                 if (not channel.chat_id):
@@ -24,29 +31,7 @@ def start(context, telegram_api, logger_api):
                     telegram_api.search_public_chat(channel.username)
                 messages, last_message_id = telegram_api.channel_history(
                     int(channel.chat_id), 500, channel.last_id)
-                proxy_linkes = []
-                # get messages
-                for message in messages:
-                    for link in extract_all_mtproto(message):
-                        proxy_linkes.append(link)
-                proxy_linkes = list(set(proxy_linkes))
-                proxies = []
-                for link in proxy_linkes:
-                    server, port, secret = parse_proxy_link(link)
-                    if (len(server) > 255 or len(secret) > 255):
-                        continue
-                    proxies.append(
-                        DotDict(
-                            {
-                                "server": server,
-                                "port": port,
-                                "secret": secret
-                            }
-                        )
-                    )
-                context.add_proxies_of_channel(proxies,
-                                               channel,
-                                               last_message_id)
+                print(messages)
             except Exception as error:
                 logger_api.announce(
                     error, f"Job fetch new proxy erro at channel_id {channel.id}.")
