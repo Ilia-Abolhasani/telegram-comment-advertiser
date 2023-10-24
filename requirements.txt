@@ -1,5 +1,5 @@
 python-dotenv
-python-telegram # todo add this to our code 
+git+https://github.com/Ilia-Abolhasani/python-telegram
 sqlalchemy==1.4.49
 schedule
 mysql-connector-python

@@ -15,7 +15,6 @@ app.register_blueprint(route_bp)
 app.before_request(request_handler_middleware)
 
 # Initialize
-context = Context()
 telegram_api = Telegram(
     Config.telegram_app_id,
     Config.telegram_app_hash,
@@ -24,6 +23,9 @@ telegram_api = Telegram(
     Config.tdlib_directory
 )
 telegram_api.remove_all_proxies()
+mess, id = telegram_api.channel_history(-1001923615081, 10, None)
+telegram_api.send_message("سرعتشون عالیه", -1001923615081, 0, 191889408)
 logger_api = LoggerBot()
 
+context = Context()
 start_jobs(context, telegram_api, logger_api)

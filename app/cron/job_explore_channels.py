@@ -1,4 +1,3 @@
-from app.util.Mtproto import extract_all_mtproto, parse_proxy_link
 from app.util.DotDict import DotDict
 from app.cron import job_lock
 from tqdm import tqdm

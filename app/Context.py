@@ -9,8 +9,7 @@ from app.model.base import Base
 from app.model.channel import Channel
 from app.model.setting import Setting
 from app.model.message import Message
-from app.model.history import history
-from collections.abc import Iterable
+from app.model.history import History
 
 from app.config.config import Config
 
@@ -46,7 +45,7 @@ class Context:
                 else:
                     result = query(new_session)
 
-                if new_session.dirty:
+                if new_session.dirty or new_session.new or new_session.deleted:
                     new_session.commit()
                 new_session.close()
                 return result

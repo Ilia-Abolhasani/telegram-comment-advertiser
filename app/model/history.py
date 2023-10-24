@@ -9,4 +9,3 @@ class History(Base):
     message = relationship('Message', back_populates='histories')
     channel = relationship('Channel', back_populates='histories')
     post_id = Column(Integer, nullable=False)
-    ping_reports = relationship('PingReport', back_populates='agent')

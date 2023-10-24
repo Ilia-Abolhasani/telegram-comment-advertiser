@@ -2,7 +2,7 @@ import json
 from flask import Blueprint, jsonify, request
 from app.controller.message_controller import LogController
 
-blueprint = Blueprint('lot', __name__)
+blueprint = Blueprint('history', __name__)
 controller = LogController()
 
 
